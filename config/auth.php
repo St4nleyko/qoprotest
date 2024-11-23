@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 return [
 
@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'jwt', // Use JWT for API authentication
+            'provider' => 'users',
+        ],
+
     ],
 
     /*

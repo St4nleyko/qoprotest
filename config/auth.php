@@ -36,12 +36,14 @@ return [
     */
 
     'guards' => [
+        //leave default
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // use jwt in api routes
         'api' => [
-            'driver' => 'jwt', // Use JWT for API authentication
+            'driver' => 'jwt',
             'provider' => 'users',
         ],
 

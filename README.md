@@ -64,14 +64,37 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Laravel Application with Docker
+
+
+
+### QOPRO TASK ###
 
 ## Requirements
 - Docker
 - Docker Compose
+- Composer 
+- npm
+- PHP
 
 ## Setup Instructions
 1. Clone the repository:
    ```bash
    git clone https://github.com/St4nleyko/qoprotest.git
    cd qoprotest
+2. Install dependencies
+   composer install
+   npm install
+   php artisan jwt:secret
+   php artisan key:generate
+3. Run the server without docker
+   php artisan serve 
+   npm run dev or npm run prod
+4. Get a Gecko Api key
+   Follow documentation at https://docs.coingecko.com/v3.0.1/reference/setting-up-your-api-key
+   Add your api key and base url in .env file as
+   COINGECKO_API_KEY=your api key
+   COINGECKO_API_URL=base url 
+5. Import and update currencies local DB - command
+   php artisan currency:update
+
+   

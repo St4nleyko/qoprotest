@@ -93,26 +93,25 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
    git clone https://github.com/St4nleyko/qoprotest.git
    cd qoprotest
 2. Install dependencies
-   composer install
-   npm install
-   php artisan jwt:secret
-   php artisan key:generate
-   php artisan migrate
-   configure other .env data like database
+   1. composer install
+   2. npm install
+   3. php artisan jwt:secret
+   4. php artisan key:generate
+   5. php artisan migrate 
+   6. configure other .env data like database
 3. Run the server without docker
-   php artisan serve 
-   npm run dev or npm run prod
+   1. php artisan serve 
+   2. npm run dev or npm run prod
 4. Run with docker
-   docker-compose up --build
+   1. docker-compose up --build
 5. Get a Gecko Api key
-   Follow documentation at https://docs.coingecko.com/v3.0.1/reference/setting-up-your-api-key
-   Add your api key and base url in .env file as
-   COINGECKO_API_KEY=your api key
-   COINGECKO_API_URL=base url 
+   1. Follow documentation at https://docs.coingecko.com/v3.0.1/reference/setting-up-your-api-key
+   2. Add your api key and base url in .env file as
+      1. COINGECKO_API_KEY=your api key
+      2. COINGECKO_API_URL=base url 
 6. Import and update currencies local DB - command
-   php artisan currency:update
+   1. php artisan currency:update
 7. Emails, queues and automation every minute
-   If you wish to automate this process and send notification to users with watchdogs
    1. Set up SMTP or any other email service, to send emails, in your .env file
    2. set up QUEUE_CONNECTION=database in your .env file
    3. Set up cronjob depending on your OS

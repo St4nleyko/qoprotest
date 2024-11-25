@@ -5,7 +5,6 @@ namespace App\Services;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use App\Models\Currency;
-use Illuminate\Support\Str;
 
 class GeckoService
 {
@@ -39,7 +38,7 @@ class GeckoService
                     Currency::updateOrCreate(
                         ['coin_id' => $currencyData['id']],
                         [
-                            'id' => (string) Str::uuid(),
+//                            'id' => (string) Str::uuid(),
                             'name' => $currencyData['name'],
                             'symbol' => $currencyData['symbol'],
                             'current_price' => $currencyData['current_price'],
@@ -49,9 +48,9 @@ class GeckoService
                         ]
                     );
                 }
-
                 return "Currencies imported/updated successfully.";
-            } else {
+            }
+            else {
                 return "Failed to fetch currencies: " . $response->body();
             }
         } catch (Exception $e) {

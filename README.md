@@ -86,6 +86,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
    npm install
    php artisan jwt:secret
    php artisan key:generate
+   configure other .env data like database
 3. Run the server without docker
    php artisan serve 
    npm run dev or npm run prod

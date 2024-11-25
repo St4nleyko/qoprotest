@@ -14,4 +14,7 @@ class Watchdog extends Model
         'password',
     ];
 
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

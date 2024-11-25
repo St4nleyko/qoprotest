@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Jobs\SendPriceChangeNotification;
+use App\Models\Watchdog;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use App\Models\Currency;
-
 class GeckoService
 {
     /**
@@ -35,6 +36,10 @@ class GeckoService
 
                 // Store or update currencies
                 foreach ($currencies as $currencyData) {
+                    $localDbCurrency = Currency::where('coin_id',$currencyData['id'])->first();
+                    $oldPrice = $localDbCurrency ? $localDbCurrency->current_price : null;
+                    $newPrice = $currencyData['current_price'];
+
                     Currency::updateOrCreate(
                         ['coin_id' => $currencyData['id']],
                         [
@@ -47,6 +52,13 @@ class GeckoService
                             'market_cap' => $currencyData['market_cap'],
                         ]
                     );
+                    if ($localDbCurrency && $oldPrice !== $newPrice) {
+                        $watchdogs = Watchdog::where('currency_id', $localDbCurrency->id)->get();
+                        foreach ($watchdogs as $watchdog) {
+                            SendPriceChangeNotification::dispatch($watchdog->user, $localDbCurrency, $oldPrice, $newPrice);
+                        }
+                    }
+
                 }
                 return "Currencies imported/updated successfully.";
             }

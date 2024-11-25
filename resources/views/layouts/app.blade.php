@@ -30,16 +30,18 @@
                             <a class="nav-link" href="{{ route('token.issue.view') }}">{{ __('Issue Token') }}</a>
                         </li>
                     @endif
-                    @if (Route::has('watchdog.index'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('watchdog.index') }}">{{ __('My watchdogs') }}</a>
-                        </li>
-                    @endif
-                    @if (Route::has('currency.index'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('currency.index') }}">{{ __('Currencies list') }}</a>
-                        </li>
-                    @endif
+                    @auth
+                        @if (Route::has('watchdog.index'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('watchdog.index') }}">{{ __('My watchdogs') }}</a>
+                            </li>
+                        @endif
+                        @if (Route::has('currency.index'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('currency.index') }}">{{ __('Currencies list') }}</a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -69,7 +71,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name ? Auth::user()->name : 'unnamed'}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

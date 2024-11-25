@@ -68,7 +68,18 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 ### QOPRO TASK ###
+### Authentication in This App
 
+1. **JWT Authentication**:
+    - Used for API-level authentication.
+    - Endpoints:
+        - `POST /issue-token`: Issues a JWT token for login/registration.
+        - `POST /revoke-token`: Revokes an existing token.
+    - Token-based authentication can be used for backend API calls.
+
+2. **Session-Based Authentication**:
+    - Used for web functionality, such as forms and UI interactions.
+    - The app leverages Laravel's built-in session authentication for ease of use.
 ## Requirements
 - Docker
 - Docker Compose
@@ -86,16 +97,26 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
    npm install
    php artisan jwt:secret
    php artisan key:generate
+   php artisan migrate
    configure other .env data like database
 3. Run the server without docker
    php artisan serve 
    npm run dev or npm run prod
-4. Get a Gecko Api key
+4. Run with docker
+   docker-compose up --build
+5. Get a Gecko Api key
    Follow documentation at https://docs.coingecko.com/v3.0.1/reference/setting-up-your-api-key
    Add your api key and base url in .env file as
    COINGECKO_API_KEY=your api key
    COINGECKO_API_URL=base url 
-5. Import and update currencies local DB - command
+6. Import and update currencies local DB - command
    php artisan currency:update
+7. Emails, queues and automation every minute
+   If you wish to automate this process and send notification to users with watchdogs
+   1. Set up SMTP or any other email service, to send emails, in your .env file
+   2. set up QUEUE_CONNECTION=database in your .env file
+   3. Set up cronjob depending on your OS
+   4. run command: php artisan queue:work
+   5. TEST by running: php artisan schedule:run 
 
    

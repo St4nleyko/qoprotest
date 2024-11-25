@@ -20,7 +20,7 @@ Route::post('/issue-token', [AuthController::class, 'issueToken'])->name('token.
 Route::get('/issue-token-view', [AuthController::class, 'issueTokenView'])->name('token.issue.view');
 
 //currencies
-Route::get('/import-currency', [CurrencyController::class, 'importAndUpdateCurrencies']);
+//Route::get('/import-currency', [CurrencyController::class, 'importAndUpdateCurrencies']);
 
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\WatchdogController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +23,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    //watchdogs
     Route::get('/watchdogs', [WatchdogController::class, 'index'])->name('watchdog.index');
     Route::get('/create-watchdog', [WatchdogController::class, 'create'])->name('watchdog.create');
-
     Route::delete('/delete-watchdog/{watchdog}', [WatchdogController::class, 'destroy'])->name('watchdog.delete');
     Route::post('/store-watchdog', [WatchdogController::class, 'store'])->name('watchdog.store');
+    //currencies
+    Route::get('/currencies', [CurrencyController::class, 'index'])->name('currency.index');
+    Route::get('/currencies/{currency}', [CurrencyController::class, 'view'])->name('currency.view');
+
 });
 

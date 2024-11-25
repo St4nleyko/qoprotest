@@ -16,15 +16,17 @@
                     @auth
                         <table id="watchdog_table" class="table table-striped create-form "  >
                             <thead>
-                            <th>ID</th>
-                            <th>{{ __('Currency') }}</th>
-                            <th >{{ __('Actions') }}</th>
+                                <th>ID</th>
+                                <th>{{ __('Currency') }}</th>
+                                <th>{{ __('Current price') }}</th>
+                                <th >{{ __('Actions') }}</th>
                             </thead>
                             <tbody>
                                 @foreach($watchDogs as $watchDog)
                                     <tr>
                                         <td>{{$watchDog->id}}</td>
                                         <td>{{$watchDog->currency_name}}</td>
+                                        <td>{{$watchDog->currency_price}}</td>
                                         <td>
                                             <form action="{{ route('watchdog.delete',$watchDog)}}" method="post" onsubmit="return confirm('{{__('Are you sure you want to delete this item?')}}');">
                                                 @csrf

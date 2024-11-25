@@ -30,6 +30,16 @@
                             <a class="nav-link" href="{{ route('token.issue.view') }}">{{ __('Issue Token') }}</a>
                         </li>
                     @endif
+                    @if (Route::has('watchdog.index'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('watchdog.index') }}">{{ __('My watchdogs') }}</a>
+                        </li>
+                    @endif
+                    @if (Route::has('currency.index'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('currency.index') }}">{{ __('Currencies list') }}</a>
+                        </li>
+                    @endif
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

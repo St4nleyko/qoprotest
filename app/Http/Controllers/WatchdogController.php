@@ -18,7 +18,7 @@ class WatchdogController extends Controller
     {
         $watchDogs = Watchdog::where('user_id', Auth::id())
             ->join('currencies', 'watchdogs.currency_id', '=', 'currencies.id')
-            ->select('watchdogs.*', 'currencies.name as currency_name')
+            ->select('watchdogs.*', 'currencies.name as currency_name','currencies.current_price as currency_price')
             ->paginate(10);
         return view('watchdog.index', compact('watchDogs'));
     }
